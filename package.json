@@ -1,0 +1,34 @@
+{
+  "name": "postcss-table-of-contents",
+  "version": "0.0.0",
+  "description": "PostCSS plugin automatically create a table of contents from certain comments in a CSS file.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "table of contents",
+    "contents",
+    "index"
+  ],
+  "author": "Heiko Mamerow <mail@heikomamerow.de>",
+  "license": "MIT",
+  "repository": "HeikoMamerow/postcss-table-of-contents",
+  "bugs": {
+    "url": "https://github.com/HeikoMamerow/postcss-table-of-contents/issues"
+  },
+  "homepage": "https://github.com/HeikoMamerow/postcss-table-of-contents",
+  "dependencies": {
+    "postcss": "^5.0.21"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "eslint": "^2.10.0",
+    "eslint-config-postcss": "^2.0.2"
+  },
+  "scripts": {
+    "test": "ava && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5"
+  }
+}
