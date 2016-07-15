@@ -1,13 +1,26 @@
-var postcss = require('postcss');
+var postcss = require( 'postcss' );
+    module.exports = postcss.plugin( 'postcss-table-of-contents', function ( opts ) {
+    opts = opts || { };
+        // Work with options here
 
-module.exports = postcss.plugin('postcss-table-of-contents', function (opts) {
-    opts = opts || {};
+        return function ( css, result ) {
 
-    // Work with options here
+        // I) Get all texts in comments with this pattern: #) [some-comment-text]
+        // e.g.: #) Typography
+        //
+        // Beware:
+        // [some-comment-text] must be in one line!
+        // If you have a multline comment, you will only get the first line.
 
-    return function (css, result) {
 
-        // Transform CSS AST here
 
-    };
-});
+        css.walkComments( function {
+        var comments = [ ];
+        } );
+//
+//
+//        str.match( /\w(#\)(.*))/g );
+//        comments.push( '' );
+
+        };
+        } );
