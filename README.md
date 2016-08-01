@@ -8,7 +8,7 @@
 
 ## Howto
 ### Before
-Write the placeholder #) in your comments.
+Write the placeholder **#)** in your comments.
 ```css
 /* #) Normalize */
 some rules...
