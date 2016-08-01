@@ -1,20 +1,16 @@
 import postcss from 'postcss';
-import test    from 'ava';
+    import test    from 'ava';
+    import plugin from './';
+    function run( t, input, output, opts = { } ) {
+    return postcss( [ plugin( opts ) ] ).process( input )
+        .then( result = > {
+        t.deepEqual( result.css, output );
+            t.deepEqual( result.warnings( ).length, 0 );
+        } );
+        }
 
-import plugin from './';
+// Test replacing
 
-function run(t, input, output, opts = { }) {
-    return postcss([ plugin(opts) ]).process(input)
-        .then( result => {
-            t.deepEqual(result.css, output);
-            t.deepEqual(result.warnings().length, 0);
-        });
-}
-
-/* Write tests here
-
-test('does something', t => {
-    return run(t, 'a{ }', 'a{ }', { });
-});
-
-*/
+    test( 'replace pattern from #) to 1)', t = > {
+    return run( t, '/* #) */', '/* 1) */', { } );
+        } );
