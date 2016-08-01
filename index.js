@@ -1,26 +1,32 @@
+// Load in the main postcss module
 var postcss = require( 'postcss' );
-    module.exports = postcss.plugin( 'postcss-table-of-contents', function ( opts ) {
-    opts = opts || { };
-        // Work with options here
 
-        return function ( css, result ) {
+// Wrapper
+module.exports = postcss.plugin( 'postcss-table-of-contents', function () {
+    return function ( css ) {
 
-        // I) Get all texts in comments with this pattern: #) [some-comment-text]
-        // e.g.: #) Typography
-        //
-        // Beware:
-        // [some-comment-text] must be in one line!
-        // If you have a multline comment, you will only get the first line.
+        // Variable for match counting
+        var i = [ ];
 
+        // Traverses the container’s descendant nodes, calling callback for each comment node.
+        css.walkComments( function ( comment ) {
 
+            // Get all comments as string
+            var comment_string = comment.toString();
 
-        css.walkComments( function {
-        var comments = [ ];
+            // Replace pattern with one ore more charakters with our standard pattern => #)
+            var comment_string_replaced_tmp = comment_string.replace( /(\S+)\)/, "#)" );
+
+            // Replace # with increment number
+            var comment_string_replaced = comment_string_replaced_tmp.replace( "#)", function ( m, p1 ) {
+                i[p1] = ( i[p1] || 0 ) + 1;
+                return i[p1].toString() + ")";
+            } );
+
+            // Replace all comments with our new string
+            comment.replaceWith( comment_string_replaced );
+
         } );
-//
-//
-//        str.match( /\w(#\)(.*))/g );
-//        comments.push( '' );
 
-        };
-        } );
+    };
+} );
