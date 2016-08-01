@@ -6,7 +6,7 @@
 [ci-img]:  https://travis-ci.org/HeikoMamerow/postcss-table-of-contents.svg
 [ci]:      https://travis-ci.org/HeikoMamerow/postcss-table-of-contents
 
-## How
+## Howto
 ### Before
 Write the placeholder #) in your comments.
 ```css
@@ -33,7 +33,7 @@ some rules...
 ```
 
 ## Usage: npm run / CLI
-Use with [`postcss-cli`].
+Use with [postcss-cli](https://github.com/postcss/postcss-cli).
 
 ```sh
 postcss --use postcss-table-of-contents
@@ -49,7 +49,8 @@ TABLE OF CONTENTS:
 1) Normalize
 2) Typography
 3) Elements
---------------------------------------------------------------*/
+------------------------------------------------------------------------------*/
+
 
 /* 1) Normalize */
 some rules...
