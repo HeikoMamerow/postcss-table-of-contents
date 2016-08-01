@@ -6,12 +6,9 @@
 [ci-img]:  https://travis-ci.org/HeikoMamerow/postcss-table-of-contents.svg
 [ci]:      https://travis-ci.org/HeikoMamerow/postcss-table-of-contents
 
-## Howto
-
-Write the placeholder #) in your comments. This plugin will replace the placeholder with increment number.
-
-## Before / After
-
+## How
+### Before
+Write the placeholder #) in your comments.
 ```css
 /* #) Normalize */
 some rules...
@@ -22,7 +19,8 @@ some rules...
 /* #) Elements */
 some rules...
 ```
-
+### After
+This plugin will replace the placeholder with increment number.
 ```css
 /* 1) Normalize */
 some rules...
@@ -34,10 +32,10 @@ some rules...
 some rules...
 ```
 
-## Usage: CLI
-Use with [postcss-cli]:
+## Usage: npm run / CLI
+Use with [`postcss-cli`].
 
-```js
+```sh
 postcss --use postcss-table-of-contents
 ```
 See [PostCSS] docs for examples for your environment.
