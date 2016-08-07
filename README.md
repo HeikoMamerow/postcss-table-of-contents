@@ -6,9 +6,9 @@
 [ci-img]:  https://travis-ci.org/HeikoMamerow/postcss-table-of-contents.svg
 [ci]:      https://travis-ci.org/HeikoMamerow/postcss-table-of-contents
 
-## Howto
+## WTF
 ### Before
-Write the placeholder **#)** in your comments.
+Write the numbering placeholder **#)** in your comments.
 ```css
 /* #) Normalize */
 some rules...
@@ -31,6 +31,11 @@ some rules...
 /* 3) Elements */
 some rules...
 ```
+
+## Please note
+* Write your heading in regular css comment syntax.
+* Write your heading in one single line.
+* The numbering placeholder **#)** must come first in your heading.
 
 ## Usage: npm run / CLI
 Use with [postcss-cli](https://github.com/postcss/postcss-cli).
