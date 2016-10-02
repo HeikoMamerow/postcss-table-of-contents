@@ -19,6 +19,7 @@ some rules...
 /* #) Elements */
 some rules...
 ```
+
 ### After
 This plugin will replace the placeholder with increment number.
 ```css
@@ -55,7 +56,6 @@ TABLE OF CONTENTS:
 2) Typography
 3) Elements
 ------------------------------------------------------------------------------*/
-
 
 /* 1) Normalize */
 some rules...
