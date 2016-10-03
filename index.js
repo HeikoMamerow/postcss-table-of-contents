@@ -21,7 +21,7 @@ module.exports = postcss.plugin( 'postcss-table-of-contents', function () {
 				// Reset old numberings with numbering placholder #)
 				var StringMatchTmp = String.replace( /(\S+)\)/, noPlaceholder );
 
-				// Replace numbering placholder with increment number
+				// Replace numbering placeholders with increment number
 				var StringMatch = StringMatchTmp.replace( noPlaceholder,
 					function ( m, p1 ) {
 						i[ p1 ] = ( i[ p1 ] || 0 ) + 1;
