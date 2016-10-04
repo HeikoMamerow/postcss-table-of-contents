@@ -15,13 +15,16 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
         // Function for replace placeholders below
         function replacer(match, p1, p3, p5) {
             if (match === '#)') {
+                // Replace for first level
                 i[p1] = ( i[p1] || 0 ) + 1;
                 return i[p1] + ')';
             } else if (match === '##)') {
+                // Replace for second level
                 i[p1] = i[p1] || 0;
                 ii[p3] = ( ii[p3] || 0 ) + 1;
                 return i[p1] + '.' + ii[p3] + ')';
             } else {
+                // Replace for third level
                 i[p1] = i[p1] || 0;
                 ii[p3] = ii[p3] || 0;
                 iii[p5] = ( iii[p5] || 0 ) + 1;
@@ -35,9 +38,9 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
             var String = comment.toString(); // Get comments as string
 
             // Check, if table of contents placeholder is in string
-            var isInString = tocPlaceholder.test(String);
-
-            if (isInString === false) {
+            // This must be revised:
+            // var isInString = tocPlaceholder.test(String);
+            // if (isInString === false) {
 
                 // Reset old numberings with numbering placeholder #)
                 // This must be revised:
@@ -50,11 +53,11 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
                 // Replace all comments with our new string
                 comment.replaceWith(StringMatch);
 
-            } else {
+            // } else {
                 // Get array of #) comments
 
                 // Cum back later ;-)
-            }
+            // }
         });
     };
 });
