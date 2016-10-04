@@ -10,28 +10,38 @@
 ### Before
 Write the numbering placeholder **#)** in your comments.
 ```css
-/* #) Normalize */
+/* #) Navigation */
 some rules...
 
-/* #) Typography */
+/* ##) Links */
 some rules...
 
-/* #) Elements */
+/* ##) Menus */
+some rules...
+
+/* #) Accessibility */
 some rules...
 ```
 
 ### After
 This plugin will replace the placeholder with increment number.
 ```css
-/* 1) Normalize */
+/* 1) Navigation */
 some rules...
 
-/* 2) Typography */
+/* 1.1) Links */
 some rules...
 
-/* 3) Elements */
+/* 1.2) Menus */
+some rules...
+
+/* 2) Accessibility */
 some rules...
 ```
+
+## Features
+* Automated numbering
+* Supports indexing up to three levels
 
 ## Please note
 * Write your heading in regular css comment syntax.
