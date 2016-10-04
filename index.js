@@ -10,7 +10,8 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
         var iii = []; // Variable for match counting
 
         // This must be revised:
-        // var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
+        // Placeholder for table of contents: (#)
+        // var tocPlaceholder = /\(#\)/;
 
         // Function for replace placeholders below
         function replacer(match, p1, p3, p5) {
@@ -42,21 +43,21 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
             // var isInString = tocPlaceholder.test(String);
             // if (isInString === false) {
 
-                // Reset old numberings with numbering placeholder #)
-                // This must be revised:
-                // var StringMatchTmp = String.replace(/(\S)\)/, '#');
+            // Reset old numberings with numbering placeholder #)
+            // This must be revised:
+            // var StringMatchTmp = String.replace(/(\S)\)/, '#');
 
-                // Replace numbering placeholders with increment number
-                var StringMatch = String.replace(/(#)(\)?)(#?)(\)?)(#?\)?)/,
-                    replacer);
+            // Replace numbering placeholders with increment number
+            var StringMatch = String.replace(/(#)(\)?)(#?)(\)?)(#?\)?)/,
+                replacer);
 
-                // Replace all comments with our new string
-                comment.replaceWith(StringMatch);
+            // Replace all comments with our new string
+            comment.replaceWith(StringMatch);
 
             // } else {
-                // Get array of #) comments
+            // Get array of #) comments
 
-                // Cum back later ;-)
+            // Cum back later ;-)
             // }
         });
     };
