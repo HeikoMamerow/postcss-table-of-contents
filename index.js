@@ -1,41 +1,58 @@
 // Load in the main postcss module
-var postcss = require( 'postcss' );
+var postcss = require('postcss');
 
 // Wrapper
-module.exports = postcss.plugin( 'postcss-table-of-contents', function () {
-	return function ( css ) {
+module.exports = postcss.plugin('postcss-table-of-contents', function () {
+    return function (css) {
 
-		var i = []; // Variable for match counting
-		var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
-		var noPlaceholder = '#)'; // Placeholder for numberings: #)
+        var i = []; // Variable for match counting
+        var ii = []; // Variable for match counting
+        var iii = []; // Variable for match counting
+        var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
 
-		// Traverses the container’s descendant nodes
-		css.walkComments( function ( comment ) {
+        // Function for replace placeholders below
+        function replacer(match, p1, p3, p5) {
+            if (match === '#)') {
+                i[p1] = ( i[p1] || 0 ) + 1;
+                return i[p1] + ')';
+            } else if (match === '##)') {
+                i[p1] = i[p1] || 0;
+                ii[p3] = ( ii[p3] || 0 ) + 1;
+                return i[p1] + '.' + ii[p3] + ')';
+            } else {
+                i[p1] = i[p1] || 0;
+                ii[p3] = ii[p3] || 0;
+                iii[p5] = ( iii[p5] || 0 ) + 1;
+                return i[p1] + '.' + ii[p3] + '.' + iii[p5] + ')';
+            }
+        }
 
-			var String = comment.toString(); // Get comments as string
+        // Traverses the container’s descendant nodes
+        css.walkComments(function (comment) {
 
-			// Check, if table of contents placholder is in string
-			var isInString = tocPlaceholder.test( String );
-			if ( isInString === false ) {
+            var String = comment.toString(); // Get comments as string
 
-				// Reset old numberings with numbering placholder #)
-				var StringMatchTmp = String.replace( /(\S+)\)/, noPlaceholder );
+            // Check, if table of contents placeholder is in string
+            var isInString = tocPlaceholder.test(String);
 
-				// Replace numbering placeholders with increment number
-				var StringMatch = StringMatchTmp.replace( noPlaceholder,
-					function ( m, p1 ) {
-						i[ p1 ] = ( i[ p1 ] || 0 ) + 1;
-						return i[ p1 ].toString() + ')';
-					} );
+            if (isInString === false) {
 
-				// Replace all comments with our new string
-				comment.replaceWith( StringMatch );
+                // Reset old numberings with numbering placeholder #)
+                // This must be to overwork:
+                // var StringMatchTmp = String.replace(/(\S)\)/, '#');
 
-			} else {
-				// Get array of #) comments
+                // Replace numbering placeholders with increment number
+                var StringMatch = String.replace(/(#)(\)?)(#?)(\)?)(#?\)?)/,
+                    replacer);
 
-				// Cum back later ;-)
-			}
-		} );
-	};
-} );
+                // Replace all comments with our new string
+                comment.replaceWith(StringMatch);
+
+            } else {
+                // Get array of #) comments
+
+                // Cum back later ;-)
+            }
+        });
+    };
+});
