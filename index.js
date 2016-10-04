@@ -8,7 +8,9 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
         var i = []; // Variable for match counting
         var ii = []; // Variable for match counting
         var iii = []; // Variable for match counting
-        var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
+
+        // This must be revised:
+        // var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
 
         // Function for replace placeholders below
         function replacer(match, p1, p3, p5) {
@@ -38,7 +40,7 @@ module.exports = postcss.plugin('postcss-table-of-contents', function () {
             if (isInString === false) {
 
                 // Reset old numberings with numbering placeholder #)
-                // This must be to overwork:
+                // This must be revised:
                 // var StringMatchTmp = String.replace(/(\S)\)/, '#');
 
                 // Replace numbering placeholders with increment number
