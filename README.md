@@ -6,31 +6,47 @@
 [ci-img]:  https://travis-ci.org/HeikoMamerow/postcss-table-of-contents.svg
 [ci]:      https://travis-ci.org/HeikoMamerow/postcss-table-of-contents
 
-## Howto
+## WTF
 ### Before
-Write the placeholder **#)** in your comments.
+Write the numbering placeholder **#)** in your comments.
 ```css
-/* #) Normalize */
+/* #) Navigation */
 some rules...
 
-/* #) Typography */
+/* ##) Links */
 some rules...
 
-/* #) Elements */
+/* ##) Menus */
+some rules...
+
+/* #) Accessibility */
 some rules...
 ```
+
 ### After
 This plugin will replace the placeholder with increment number.
 ```css
-/* 1) Normalize */
+/* 1) Navigation */
 some rules...
 
-/* 2) Typography */
+/* 1.1) Links */
 some rules...
 
-/* 3) Elements */
+/* 1.2) Menus */
+some rules...
+
+/* 2) Accessibility */
 some rules...
 ```
+
+## Features
+* Automated numbering
+* Supports indexing up to three levels
+
+## Please note
+* Write your heading in regular css comment syntax.
+* Write your heading in one single line.
+* The numbering placeholder **#)** must come first in your heading.
 
 ## Usage: npm run / CLI
 Use with [postcss-cli](https://github.com/postcss/postcss-cli).
@@ -50,7 +66,6 @@ TABLE OF CONTENTS:
 2) Typography
 3) Elements
 ------------------------------------------------------------------------------*/
-
 
 /* 1) Normalize */
 some rules...

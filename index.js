@@ -1,32 +1,58 @@
 // Load in the main postcss module
-var postcss = require( 'postcss' );
+var postcss = require('postcss');
 
 // Wrapper
-module.exports = postcss.plugin( 'postcss-table-of-contents', function () {
-    return function ( css ) {
+module.exports = postcss.plugin('postcss-table-of-contents', function () {
+    return function (css) {
 
-        // Variable for match counting
-        var i = [ ];
+        var i = []; // Variable for match counting
+        var ii = []; // Variable for match counting
+        var iii = []; // Variable for match counting
+        var tocPlaceholder = /\(#\)/; // Placeholder for table of contents: (#)
+
+        // Function for replace placeholders below
+        function replacer(match, p1, p3, p5) {
+            if (match === '#)') {
+                i[p1] = ( i[p1] || 0 ) + 1;
+                return i[p1] + ')';
+            } else if (match === '##)') {
+                i[p1] = i[p1] || 0;
+                ii[p3] = ( ii[p3] || 0 ) + 1;
+                return i[p1] + '.' + ii[p3] + ')';
+            } else {
+                i[p1] = i[p1] || 0;
+                ii[p3] = ii[p3] || 0;
+                iii[p5] = ( iii[p5] || 0 ) + 1;
+                return i[p1] + '.' + ii[p3] + '.' + iii[p5] + ')';
+            }
+        }
 
         // Traverses the container’s descendant nodes
-        css.walkComments( function ( comment ) {
+        css.walkComments(function (comment) {
 
-            // Get all comments as string
-            var String = comment.toString();
+            var String = comment.toString(); // Get comments as string
 
-            // Replace pattern with one ore more charakters
-            var StringMatchTmp = String.replace( /(\S+)\)/, '#)' );
+            // Check, if table of contents placeholder is in string
+            var isInString = tocPlaceholder.test(String);
 
-            // Replace # with increment number
-            var StringMatch = StringMatchTmp.replace( '#)', function ( m, p1 ) {
-                i[p1] = ( i[p1] || 0 ) + 1;
-                return i[p1].toString() + ')';
-            } );
+            if (isInString === false) {
 
-            // Replace all comments with our new string
-            comment.replaceWith( StringMatch );
+                // Reset old numberings with numbering placeholder #)
+                // This must be to overwork:
+                // var StringMatchTmp = String.replace(/(\S)\)/, '#');
 
-        } );
+                // Replace numbering placeholders with increment number
+                var StringMatch = String.replace(/(#)(\)?)(#?)(\)?)(#?\)?)/,
+                    replacer);
 
+                // Replace all comments with our new string
+                comment.replaceWith(StringMatch);
+
+            } else {
+                // Get array of #) comments
+
+                // Cum back later ;-)
+            }
+        });
     };
-} );
+});
